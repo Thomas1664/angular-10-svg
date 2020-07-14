@@ -1,12 +1,13 @@
-import { Component, Input, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges, Output } from '@angular/core'
+import { Component, Input, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core'
 import { Container, SVG } from '@svgdotjs/svg.js'
+import { EventsDirective } from '../events/events.directive'
 
 @Component({
   selector: 'svg-container',
   templateUrl: './container.component.html',
   styleUrls: ['./container.component.scss']
 })
-export class ContainerComponent implements AfterViewInit, OnChanges {
+export class ContainerComponent extends EventsDirective implements AfterViewInit, OnChanges {
 
   @Input() containerId: string
   @Input() width: number | string = '100%'
@@ -17,7 +18,9 @@ export class ContainerComponent implements AfterViewInit, OnChanges {
 
   constructor(
     private changeDetector: ChangeDetectorRef
-  ) { }
+  ) {
+    super()
+  }
 
   ngAfterViewInit(): void {
     this._container = this.setContainer(this.containerId, this.width, this.height, this.viewbox)
@@ -47,6 +50,13 @@ export class ContainerComponent implements AfterViewInit, OnChanges {
     const result = SVG()
       .addTo(`#${id}`)
       .size(width, height)
+      .on('click', (event: MouseEvent) => this.click.emit(event))
+      .on('dblclick', (event: MouseEvent) => this.click.emit(event))
+      .on('mousedown', (event: MouseEvent) => this.click.emit(event))
+      .on('mouseup', (event: MouseEvent) => this.click.emit(event))
+      .on('mouseover', (event: MouseEvent) => this.click.emit(event))
+      .on('mouseout', (event: MouseEvent) => this.click.emit(event))
+      .on('mousemove', (event: MouseEvent) => this.click.emit(event))
 
     if (viewbox && viewbox.length === 4) {
       return this.setViewbox(result, viewbox)

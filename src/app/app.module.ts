@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core'
 
 import { AppComponent } from './app.component'
 import { ContainerComponent } from './container/container.component'
+import { EventsDirective } from './events/events.directive'
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContainerComponent
+    ContainerComponent,
+    EventsDirective
   ],
   imports: [
     BrowserModule
