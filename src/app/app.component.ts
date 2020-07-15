@@ -10,4 +10,9 @@ export class AppComponent {
   changeWidth() {
     this.width = 500
   }
+
+  svgClick(e) {
+    console.log(e)
+
+  }
 }
