@@ -6,13 +6,15 @@ import { ContainerComponent } from './container/container.component'
 import { EventsDirective } from './events/events.directive'
 import { RectDirective } from './rect/rect.directive'
 import { ContainerService } from './container-service/container.service'
+import { TextDirective } from './text/text.directive'
 
 @NgModule({
   declarations: [
     AppComponent,
     ContainerComponent,
     EventsDirective,
-    RectDirective
+    RectDirective,
+    TextDirective
   ],
   imports: [
     BrowserModule
