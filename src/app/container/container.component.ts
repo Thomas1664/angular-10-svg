@@ -1,6 +1,7 @@
 import { Component, Input, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core'
 import { Container, SVG } from '@svgdotjs/svg.js'
 import { EventsDirective } from '../events/events.directive'
+import { ContainerService } from '../container-service/container.service'
 
 @Component({
   selector: 'svg-container',
@@ -22,13 +23,14 @@ export class ContainerComponent extends EventsDirective implements AfterViewInit
 
 
   constructor(
-    private changeDetector: ChangeDetectorRef
+    private _containerService: ContainerService
   ) {
     super()
   }
 
   ngAfterViewInit(): void {
     this._container = this.setContainer(this.containerId, this.width, this.height, this.viewbox)
+    this._containerService.container = this._container
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -49,6 +51,8 @@ export class ContainerComponent extends EventsDirective implements AfterViewInit
     if (changes.height && changes.height.previousValue !== changes.height.currentValue) {
       this._container.height(changes.height.currentValue)
     }
+
+    this._containerService.container = this._container
   }
 
   setContainer(id: string, width: number | string, height: number | string, viewbox: [number, number, number, number]) {
