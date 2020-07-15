@@ -1,10 +1,16 @@
-import { Directive } from '@angular/core'
+import { Directive, Input } from '@angular/core'
+import { EventsDirective } from '../events/events.directive'
 
 @Directive({
   selector: ' '
 })
-export class ElementBaseDirective {
+export class ElementBaseDirective extends EventsDirective {
 
-  constructor() { }
+  @Input() classes: string[] = []
+  @Input() attrs: { [key: string]: any } = {}
+  @Input() style: CSSStyleDeclaration
 
+  constructor() {
+    super()
+  }
 }

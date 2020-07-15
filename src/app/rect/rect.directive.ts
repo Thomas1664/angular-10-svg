@@ -2,11 +2,12 @@ import { Directive, Input, AfterViewChecked, OnDestroy, OnChanges, SimpleChanges
 import { EventsDirective } from '../events/events.directive'
 import { Rect, Container } from '@svgdotjs/svg.js'
 import { ContainerService } from '../container-service/container.service'
+import { ElementBaseDirective } from '../element-base/element-base.directive'
 
 @Directive({
   selector: 'svg-rect'
 })
-export class RectDirective extends EventsDirective implements AfterViewChecked, OnDestroy, OnChanges {
+export class RectDirective extends ElementBaseDirective implements AfterViewChecked, OnDestroy, OnChanges {
 
   private _rect: Rect
   private _container: Container
@@ -16,8 +17,6 @@ export class RectDirective extends EventsDirective implements AfterViewChecked, 
   @Input() x: number | string = 0
   @Input() y: number | string = 0
   @Input() color: string = '#000'
-  @Input() classes: string[] = []
-  @Input() attrs: { [key: string]: any } = {}
 
   constructor(
     private _containerService: ContainerService
@@ -51,10 +50,6 @@ export class RectDirective extends EventsDirective implements AfterViewChecked, 
       this._rect.x(changes.y.currentValue)
     }
 
-    if (changes.width && changes.width.previousValue !== changes.width.currentValue) {
-      this._rect.width(changes.width.currentValue)
-    }
-
     if (changes.color && changes.color.previousValue !== changes.color.currentValue) {
       this._rect.fill(changes.color.currentValue)
     }
@@ -63,8 +58,8 @@ export class RectDirective extends EventsDirective implements AfterViewChecked, 
       this._rect.attr('class', changes.classes.currentValue)
     }
 
-    if (changes.attrs && changes.attrs.previousValue !== changes.attrs.currentValue) {
-      this._rect.attr(changes.attrs.currentValue)
+    if (changes.style && changes.style.previousValue !== changes.style.currentValue) {
+      this._rect.css(changes.style.currentValue)
     }
   }
 
@@ -81,6 +76,7 @@ export class RectDirective extends EventsDirective implements AfterViewChecked, 
       .move(this.x, this.y)
       .attr(this.attrs)
       .attr('class', this.classes)
+      .css(this.style)
 
     return this.registerHandlers(result)
   }
