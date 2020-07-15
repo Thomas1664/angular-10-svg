@@ -16,6 +16,11 @@ export class ContainerComponent extends EventsDirective implements AfterViewInit
 
   private _container: Container
 
+  public get container(): Container {
+    return this._container
+  }
+
+
   constructor(
     private changeDetector: ChangeDetectorRef
   ) {
@@ -50,7 +55,7 @@ export class ContainerComponent extends EventsDirective implements AfterViewInit
     let result = SVG()
       .addTo(`#${id}`)
       .size(width, height)
-      
+
     result = this.registerHandlers(result)
 
     if (viewbox && viewbox.length === 4) {
