@@ -14,4 +14,14 @@ export class EventsDirective {
 
   constructor() { }
 
+  protected registerHandlers(container: any) {
+    return container
+      .on('click', (event: MouseEvent) => this.click.emit(event))
+      .on('dblclick', (event: MouseEvent) => this.dblClick.emit(event))
+      .on('mousedown', (event: MouseEvent) => this.mouseDown.emit(event))
+      .on('mouseup', (event: MouseEvent) => this.mouseUp.emit(event))
+      .on('mouseover', (event: MouseEvent) => this.mouseOver.emit(event))
+      .on('mouseout', (event: MouseEvent) => this.mouseOut.emit(event))
+      .on('mousemove', (event: MouseEvent) => this.mouseMove.emit(event))
+  }
 }

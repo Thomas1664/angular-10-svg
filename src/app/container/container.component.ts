@@ -31,32 +31,27 @@ export class ContainerComponent extends EventsDirective implements AfterViewInit
     if (!this._container) return
 
     // Viewbox changed?
-    if (changes.viewbox.previousValue !== changes.viewbox.currentValue) {
+    if (changes.viewbox && changes.viewbox.previousValue !== changes.viewbox.currentValue) {
       this._container = this.setViewbox(this._container, changes.viewbox.currentValue)
     }
 
     // width changed?
-    if (changes.width.previousValue !== changes.width.currentValue) {
+    if (changes.width && changes.width.previousValue !== changes.width.currentValue) {
       this._container.width(changes.width.currentValue)
     }
 
     // height changed?
-    if (changes.height.previousValue !== changes.height.currentValue) {
+    if (changes.height && changes.height.previousValue !== changes.height.currentValue) {
       this._container.height(changes.height.currentValue)
     }
   }
 
   setContainer(id: string, width: number | string, height: number | string, viewbox: [number, number, number, number]) {
-    const result = SVG()
+    let result = SVG()
       .addTo(`#${id}`)
       .size(width, height)
-      .on('click', (event: MouseEvent) => this.click.emit(event))
-      .on('dblclick', (event: MouseEvent) => this.click.emit(event))
-      .on('mousedown', (event: MouseEvent) => this.click.emit(event))
-      .on('mouseup', (event: MouseEvent) => this.click.emit(event))
-      .on('mouseover', (event: MouseEvent) => this.click.emit(event))
-      .on('mouseout', (event: MouseEvent) => this.click.emit(event))
-      .on('mousemove', (event: MouseEvent) => this.click.emit(event))
+      
+    result = this.registerHandlers(result)
 
     if (viewbox && viewbox.length === 4) {
       return this.setViewbox(result, viewbox)
