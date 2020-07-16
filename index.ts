@@ -1,0 +1,1 @@
+export { AppModule as SvgModule } from './src/app/app.module'

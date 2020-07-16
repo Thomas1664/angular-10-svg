@@ -21,6 +21,12 @@ import { ElementBaseDirective } from './element-base/element-base.directive'
   imports: [
     BrowserModule
   ],
+  exports: [
+    ContainerComponent,
+    RectDirective,
+    TextDirective,
+    ElementBaseDirective
+  ],
   providers: [ContainerService],
   bootstrap: [AppComponent]
 })
