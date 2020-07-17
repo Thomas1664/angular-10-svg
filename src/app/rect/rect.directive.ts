@@ -47,7 +47,7 @@ export class RectDirective extends ElementBaseDirective implements AfterViewChec
     }
 
     if (changes.y && changes.y.previousValue !== changes.y.currentValue) {
-      this._rect.x(changes.y.currentValue)
+      this._rect.y(changes.y.currentValue)
     }
 
     if (changes.color && changes.color.previousValue !== changes.color.currentValue) {
