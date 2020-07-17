@@ -45,11 +45,11 @@ export class TextDirective extends ElementBaseDirective implements AfterViewChec
     }
 
     if (changes.x && changes.x.previousValue !== changes.x.currentValue) {
-      this._text.x(changes.x.currentValue)
+      this._text.attr('x', changes.x.currentValue)
     }
 
     if (changes.y && changes.y.previousValue !== changes.y.currentValue) {
-      this._text.x(changes.y.currentValue)
+      this._text.attr('y', changes.y.currentValue)
     }
 
     if (changes.color && changes.color.previousValue !== changes.color.currentValue) {
@@ -81,7 +81,8 @@ export class TextDirective extends ElementBaseDirective implements AfterViewChec
         size: this.fontSize
       })
       .attr(this.attrs)
-      .move(this.x, this.y)
+      .attr('x', this.x)
+      .attr('y', this.y)
       .attr('class', this.classes)
       .css(this.style)
 
