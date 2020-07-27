@@ -10,7 +10,7 @@ import { ContainerService } from '../container-service/container.service'
 })
 export class ContainerComponent extends EventsDirective implements AfterViewInit, OnChanges {
 
-  @Input() containerId: string
+  @Input('container-id') containerId: string
   @Input() width: number | string = '100%'
   @Input() height: number | string = 200
   @Input() viewbox: [number, number, number, number] = null
