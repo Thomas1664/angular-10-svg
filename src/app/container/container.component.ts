@@ -1,4 +1,4 @@
-import { Component, Input, ChangeDetectorRef, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core'
+import { Component, Input, AfterViewInit, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core'
 import { Container, SVG } from '@svgdotjs/svg.js'
 import { EventsDirective } from '../events/events.directive'
 import { ContainerService } from '../container-service/container.service'
@@ -14,6 +14,7 @@ export class ContainerComponent extends EventsDirective implements AfterViewInit
   @Input() width: number | string = '100%'
   @Input() height: number | string = 200
   @Input() viewbox: [number, number, number, number] = null
+  @ViewChild('svgContainer') svgContainer: ElementRef
 
   private _container: Container
 
