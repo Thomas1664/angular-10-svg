@@ -8,6 +8,7 @@ import { RectDirective } from './rect/rect.directive'
 import { ContainerService } from './container-service/container.service'
 import { TextDirective } from './text/text.directive'
 import { ElementBaseDirective } from './element-base/element-base.directive'
+import { LineDirective } from './line/line.directive'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ElementBaseDirective } from './element-base/element-base.directive'
     EventsDirective,
     RectDirective,
     TextDirective,
-    ElementBaseDirective
+    ElementBaseDirective,
+    LineDirective
   ],
   imports: [
     BrowserModule
@@ -25,7 +27,8 @@ import { ElementBaseDirective } from './element-base/element-base.directive'
     ContainerComponent,
     RectDirective,
     TextDirective,
-    ElementBaseDirective
+    ElementBaseDirective,
+    LineDirective
   ],
   providers: [ContainerService],
   bootstrap: [AppComponent]
